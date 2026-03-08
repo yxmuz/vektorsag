@@ -1,0 +1,460 @@
+/* ===========================
+   CSS Variables & Reset
+   =========================== */
+:root {
+  --bg:        #0b0d17;
+  --bg-alt:    #10132a;
+  --surface:   rgba(255, 255, 255, 0.04);
+  --glass:     rgba(255, 255, 255, 0.06);
+  --glass-b:   rgba(255, 255, 255, 0.12);
+  --text:      #e2e4ed;
+  --text-dim:  #8a8fa8;
+  --accent1:   #7b2ff7;
+  --accent2:   #00c6ff;
+  --glow1:     rgba(123, 47, 247, .35);
+  --glow2:     rgba(0, 198, 255, .25);
+  --radius:    16px;
+  --max-w:     1120px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+img, svg { max-width: 100%; display: block; }
+a { color: var(--accent2); text-decoration: none; }
+
+/* ===========================
+   Utility
+   =========================== */
+.container {
+  width: 90%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.section {
+  padding: 100px 0;
+}
+
+.alt-bg {
+  background: var(--bg-alt);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  text-align: center;
+  margin-bottom: .4em;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-sub {
+  text-align: center;
+  color: var(--text-dim);
+  margin-bottom: 3rem;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===========================
+   Reveal-on-scroll
+   =========================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================
+   Glass Card
+   =========================== */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-b);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.card {
+  padding: 2rem;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px var(--glow1);
+}
+
+/* ===========================
+   HERO
+   =========================== */
+#hero {
+  position: relative;
+  height: 100vh;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: .25em;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: .75em 2em;
+  border-radius: 40px;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: box-shadow .3s ease, transform .3s ease;
+}
+
+.cta-btn:hover {
+  box-shadow: 0 0 24px var(--glow1), 0 0 48px var(--glow2);
+  transform: scale(1.05);
+}
+
+/* ===========================
+   WHAT Section (two-col)
+   =========================== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.two-col p {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+
+.illustration {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   COMPARE Section
+   =========================== */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.compare-grid .card { text-align: center; }
+.compare-grid h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.zoom-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+}
+
+.zoom-demo svg {
+  width: 160px;
+  height: 160px;
+  transition: transform .4s ease;
+}
+
+.raster-demo svg { image-rendering: pixelated; }
+
+.zoom-demo:hover svg {
+  transform: scale(1.8);
+}
+
+.demo-label {
+  font-size: .85rem;
+  color: var(--text-dim);
+}
+
+/* ===========================
+   BENEFITS Section
+   =========================== */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+}
+
+.benefits-grid h3 {
+  font-size: 1.1rem;
+  margin-bottom: .4em;
+}
+
+.benefits-grid p {
+  font-size: .95rem;
+  color: var(--text-dim);
+}
+
+/* ===========================
+   USE CASES Section
+   =========================== */
+.uses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.use-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+}
+
+.use-item svg {
+  width: 64px;
+  height: 64px;
+  transition: transform .3s ease;
+}
+
+.use-item:hover svg {
+  transform: scale(1.15) rotate(4deg);
+}
+
+.use-item span {
+  font-size: .95rem;
+  color: var(--text-dim);
+}
+
+/* ===========================
+   ANATOMY Section
+   =========================== */
+.anatomy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.anatomy-card {
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.anatomy-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px var(--glow1);
+}
+
+.anatomy-card svg {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+}
+
+.anatomy-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: .3em;
+}
+
+.anatomy-card p {
+  font-size: .9rem;
+  color: var(--text-dim);
+}
+
+.anatomy-illustration {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow-x: auto;
+}
+
+.anatomy-illustration svg {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   FORMATS & TOOLS Section
+   =========================== */
+.formats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.format-card {
+  padding: 1.8rem;
+  text-align: center;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.format-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px var(--glow2);
+}
+
+.format-ext {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.format-card p {
+  font-size: .92rem;
+  color: var(--text-dim);
+}
+
+.tools-heading {
+  text-align: center;
+  margin: 3rem 0 1.5rem;
+  font-size: 1.3rem;
+  color: var(--text);
+}
+
+.tools-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.tool-pill {
+  padding: .65em 1.5em;
+  border-radius: 40px;
+  font-size: .95rem;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.tool-pill:hover {
+  transform: scale(1.06);
+  box-shadow: 0 4px 20px var(--glow1);
+}
+
+.tool-pill small {
+  color: var(--accent2);
+  font-size: .8rem;
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+#footer {
+  padding: 3rem 0;
+  text-align: center;
+  border-top: 1px solid var(--glass-b);
+}
+
+#footer p {
+  color: var(--text-dim);
+  font-size: .95rem;
+}
+
+.footer-note {
+  margin-top: .5rem;
+  font-size: .8rem !important;
+  opacity: .6;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 768px) {
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 60px 0;
+  }
+
+  .anatomy-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .anatomy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .uses-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
