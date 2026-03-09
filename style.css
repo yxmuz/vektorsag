@@ -190,44 +190,81 @@ h2 {
 }
 
 /* ===========================
-   COMPARE Section
+   COMPARE Section – Before / After Slider
    =========================== */
-.compare-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-top: 1rem;
+.ba-wrapper {
+  margin-top: 2rem;
 }
 
-.compare-grid .card { text-align: center; }
-.compare-grid h3 {
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  color: var(--text);
+.ba-container {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: col-resize;
+  border: 1px solid var(--glass-b);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
 }
 
-.zoom-demo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .75rem;
+.ba-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.zoom-demo svg {
-  width: 160px;
-  height: 160px;
-  transition: transform .4s ease;
+.ba-layer svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-.raster-demo svg { image-rendering: pixelated; }
-
-.zoom-demo:hover svg {
-  transform: scale(1.8);
+.ba-after {
+  clip-path: inset(0 0 0 50%);
 }
 
-.demo-label {
-  font-size: .85rem;
-  color: var(--text-dim);
+.ba-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  transform: translateX(-50%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.ba-line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background: var(--accent2);
+  box-shadow: 0 0 8px var(--glow2), 0 0 20px var(--glow2);
+}
+
+.ba-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  filter: drop-shadow(0 0 6px rgba(0, 198, 255, .5));
+  transition: filter .2s ease;
+}
+
+.ba-handle:hover {
+  filter: drop-shadow(0 0 12px rgba(0, 198, 255, .8));
+}
+
+.ba-handle svg {
+  display: block;
+  width: 40px;
+  height: 40px;
 }
 
 /* ===========================
@@ -436,16 +473,17 @@ h2 {
     grid-template-columns: 1fr;
   }
 
-  .compare-grid {
-    grid-template-columns: 1fr;
-  }
-
   .section {
     padding: 60px 0;
   }
 
   .anatomy-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .ba-handle svg {
+    width: 32px;
+    height: 32px;
   }
 }
 

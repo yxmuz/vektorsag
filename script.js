@@ -102,3 +102,52 @@
 
   els.forEach(function (el) { observer.observe(el); });
 })();
+
+/* ===========================
+   Before / After comparison slider
+   =========================== */
+(function initBeforeAfter() {
+  var container = document.getElementById('ba-container');
+  var divider = document.getElementById('ba-divider');
+  if (!container || !divider) return;
+
+  var afterLayer = container.querySelector('.ba-after');
+  var dragging = false;
+
+  function setPosition(x) {
+    var rect = container.getBoundingClientRect();
+    var pct = ((x - rect.left) / rect.width) * 100;
+    pct = Math.max(0, Math.min(100, pct));
+    divider.style.left = pct + '%';
+    afterLayer.style.clipPath = 'inset(0 0 0 ' + pct + '%)';
+  }
+
+  container.addEventListener('mousedown', function (e) {
+    e.preventDefault();
+    dragging = true;
+    setPosition(e.clientX);
+  });
+
+  window.addEventListener('mousemove', function (e) {
+    if (!dragging) return;
+    setPosition(e.clientX);
+  });
+
+  window.addEventListener('mouseup', function () {
+    dragging = false;
+  });
+
+  container.addEventListener('touchstart', function (e) {
+    dragging = true;
+    setPosition(e.touches[0].clientX);
+  }, { passive: true });
+
+  window.addEventListener('touchmove', function (e) {
+    if (!dragging) return;
+    setPosition(e.touches[0].clientX);
+  }, { passive: true });
+
+  window.addEventListener('touchend', function () {
+    dragging = false;
+  });
+})();
