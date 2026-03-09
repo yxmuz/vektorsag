@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vektorgrafika — Bevezetés</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ======== HERO ======== -->
+  <section id="hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-content reveal">
+      <h1>Vektorgrafika</h1>
+      <p class="subtitle">Végtelenül méretezhető. Matematikailag tökéletes.</p>
+      <a href="#what" class="cta-btn">Felfedezés&nbsp;↓</a>
+    </div>
+  </section>
+
+  <!-- ======== MI AZ A VEKTORGRAFIKA ======== -->
+  <section id="what" class="section">
+    <div class="container">
+      <h2 class="reveal">Mi az a vektorgrafika?</h2>
+      <div class="two-col">
+        <div class="col reveal">
+          <p>A vektorgrafika <strong>matematikai egyenleteket</strong> — pontokat, vonalakat, görbéket és alakzatokat — használ a képek megjelenítésére. A pixelalapú képekkel ellentétben <em>bármilyen</em> méretre átméretezhetők minőségromlás nélkül.</p>
+        </div>
+        <div class="col reveal">
+          <svg class="illustration" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vektor útvonal illusztráció">
+            <defs>
+              <linearGradient id="grad-path" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7b2ff7"/>
+                <stop offset="100%" stop-color="#00c6ff"/>
+              </linearGradient>
+            </defs>
+            <path d="M30 170 Q80 20, 150 100 T270 30" fill="none" stroke="url(#grad-path)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="30" cy="170" r="6" fill="#7b2ff7"/>
+            <circle cx="150" cy="100" r="6" fill="#9b59ff"/>
+            <circle cx="270" cy="30" r="6" fill="#00c6ff"/>
+            <line x1="30" y1="170" x2="80" y2="20" stroke="#7b2ff755" stroke-width="1" stroke-dasharray="4"/>
+            <circle cx="80" cy="20" r="4" fill="none" stroke="#7b2ff7" stroke-width="1"/>
+            <text x="25" y="195" fill="#aaa" font-size="10" font-family="sans-serif">P₁</text>
+            <text x="145" y="125" fill="#aaa" font-size="10" font-family="sans-serif">P₂</text>
+            <text x="260" y="55" fill="#aaa" font-size="10" font-family="sans-serif">P₃</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== RASZTER vs VEKTOR ======== -->
+  <section id="compare" class="section alt-bg">
+    <div class="container">
+      <h2 class="reveal">Raszteres vs Vektoros</h2>
+      <p class="section-sub reveal">Húzd a csúszkát, és nézd meg a különbséget!</p>
+
+      <!-- Before / After slider -->
+      <div class="ba-wrapper reveal">
+        <div class="ba-container" id="ba-container">
+          <!-- Raster (before) layer — full width background -->
+          <div class="ba-layer ba-before" aria-label="Raszteres kép">
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+              <rect width="400" height="300" fill="#0b0d17"/>
+              <text x="200" y="30" text-anchor="middle" fill="#e74c3c" font-size="18" font-weight="bold" font-family="sans-serif">Raszteres (Bitmap)</text>
+              <!-- Large pixelated star -->
+              <g transform="translate(120,60)">
+                <rect x="70" y="0" width="20" height="20" fill="#e74c3c" opacity=".9"/>
+                <rect x="60" y="20" width="20" height="20" fill="#e74c3c" opacity=".85"/>
+                <rect x="70" y="20" width="20" height="20" fill="#e74c3c" opacity=".95"/>
+                <rect x="80" y="20" width="20" height="20" fill="#e74c3c" opacity=".85"/>
+                <rect x="0" y="40" width="20" height="20" fill="#e74c3c" opacity=".7"/>
+                <rect x="20" y="40" width="20" height="20" fill="#e74c3c" opacity=".8"/>
+                <rect x="40" y="40" width="20" height="20" fill="#e74c3c" opacity=".9"/>
+                <rect x="60" y="40" width="20" height="20" fill="#e74c3c" opacity=".95"/>
+                <rect x="80" y="40" width="20" height="20" fill="#e74c3c" opacity=".95"/>
+                <rect x="100" y="40" width="20" height="20" fill="#e74c3c" opacity=".9"/>
+                <rect x="120" y="40" width="20" height="20" fill="#e74c3c" opacity=".8"/>
+                <rect x="140" y="40" width="20" height="20" fill="#e74c3c" opacity=".7"/>
+                <rect x="20" y="60" width="20" height="20" fill="#e74c3c" opacity=".75"/>
+                <rect x="40" y="60" width="20" height="20" fill="#e74c3c" opacity=".85"/>
+                <rect x="60" y="60" width="20" height="20" fill="#e74c3c" opacity=".9"/>
+                <rect x="80" y="60" width="20" height="20" fill="#e74c3c" opacity=".9"/>
+                <rect x="100" y="60" width="20" height="20" fill="#e74c3c" opacity=".85"/>
+                <rect x="120" y="60" width="20" height="20" fill="#e74c3c" opacity=".75"/>
+                <rect x="40" y="80" width="20" height="20" fill="#e74c3c" opacity=".8"/>
+                <rect x="60" y="80" width="20" height="20" fill="#e74c3c" opacity=".9"/>
+                <rect x="80" y="80" width="20" height="20" fill="#e74c3c" opacity=".9"/>
+                <rect x="100" y="80" width="20" height="20" fill="#e74c3c" opacity=".8"/>
+                <rect x="40" y="100" width="20" height="20" fill="#e74c3c" opacity=".75"/>
+                <rect x="60" y="100" width="20" height="20" fill="#e74c3c" opacity=".8"/>
+                <rect x="80" y="100" width="20" height="20" fill="#e74c3c" opacity=".8"/>
+                <rect x="100" y="100" width="20" height="20" fill="#e74c3c" opacity=".75"/>
+                <rect x="20" y="120" width="20" height="20" fill="#e74c3c" opacity=".7"/>
+                <rect x="40" y="120" width="20" height="20" fill="#e74c3c" opacity=".75"/>
+                <rect x="100" y="120" width="20" height="20" fill="#e74c3c" opacity=".75"/>
+                <rect x="120" y="120" width="20" height="20" fill="#e74c3c" opacity=".7"/>
+                <rect x="0" y="140" width="20" height="20" fill="#e74c3c" opacity=".65"/>
+                <rect x="20" y="140" width="20" height="20" fill="#e74c3c" opacity=".7"/>
+                <rect x="120" y="140" width="20" height="20" fill="#e74c3c" opacity=".7"/>
+                <rect x="140" y="140" width="20" height="20" fill="#e74c3c" opacity=".65"/>
+              </g>
+              <!-- Pixelated circle -->
+              <g transform="translate(120,50)">
+                <rect x="50" y="160" width="10" height="10" fill="#e74c3c" opacity=".6"/>
+                <rect x="60" y="160" width="10" height="10" fill="#e74c3c" opacity=".65"/>
+                <rect x="90" y="160" width="10" height="10" fill="#e74c3c" opacity=".65"/>
+                <rect x="100" y="160" width="10" height="10" fill="#e74c3c" opacity=".6"/>
+              </g>
+              <text x="200" y="280" text-anchor="middle" fill="#888" font-size="13" font-family="sans-serif">Pixelek láthatók nagyításnál</text>
+            </svg>
+          </div>
+
+          <!-- Vector (after) layer — clipped -->
+          <div class="ba-layer ba-after" aria-label="Vektoros kép">
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+              <rect width="400" height="300" fill="#0b0d17"/>
+              <defs>
+                <linearGradient id="grad-ba-star" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#7b2ff7"/>
+                  <stop offset="100%" stop-color="#00c6ff"/>
+                </linearGradient>
+              </defs>
+              <text x="200" y="30" text-anchor="middle" fill="#00c6ff" font-size="18" font-weight="bold" font-family="sans-serif">Vektoros</text>
+              <!-- Smooth vector star -->
+              <polygon points="200,50 218,110 280,110 228,145 248,205 200,170 152,205 172,145 120,110 182,110" fill="none" stroke="url(#grad-ba-star)" stroke-width="3" stroke-linejoin="round"/>
+              <!-- Smooth vector circle -->
+              <circle cx="200" cy="130" r="50" fill="#7b2ff715" stroke="url(#grad-ba-star)" stroke-width="2"/>
+              <text x="200" y="280" text-anchor="middle" fill="#888" font-size="13" font-family="sans-serif">Tökéletesen éles bármilyen méretben</text>
+            </svg>
+          </div>
+
+          <!-- Draggable divider -->
+          <div class="ba-divider" id="ba-divider">
+            <div class="ba-line"></div>
+            <div class="ba-handle">
+              <svg viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="16" r="15" fill="#0b0d17" stroke="#00c6ff" stroke-width="2"/>
+                <path d="M11 12 L7 16 L11 20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 12 L25 16 L21 20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== ELŐNYÖK ======== -->
+  <section id="benefits" class="section">
+    <div class="container">
+      <h2 class="reveal">Miért használj vektorgrafikát?</h2>
+      <div class="benefits-grid">
+        <!-- Card 1 -->
+        <div class="card glass reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="20" fill="none" stroke="#7b2ff7" stroke-width="2"/><path d="M16 24l6 6 10-12" fill="none" stroke="#00c6ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Végtelen méretezhetőség</h3>
+          <p>Egy favikontól az óriásplakátig — mindig éles marad.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="card glass reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="32" height="32" rx="6" fill="none" stroke="#7b2ff7" stroke-width="2"/><path d="M18 30 L24 18 L30 30" fill="none" stroke="#00c6ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Kis fájlméret</h3>
+          <p>A matematikai leírás könnyű fájlokat eredményez.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="card glass reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="18" fill="none" stroke="#7b2ff7" stroke-width="2"/><circle cx="24" cy="24" r="8" fill="none" stroke="#00c6ff" stroke-width="2"/><line x1="24" y1="6" x2="24" y2="16" stroke="#9b59ff" stroke-width="1.5"/><line x1="24" y1="32" x2="24" y2="42" stroke="#9b59ff" stroke-width="1.5"/><line x1="6" y1="24" x2="16" y2="24" stroke="#9b59ff" stroke-width="1.5"/><line x1="32" y1="24" x2="42" y2="24" stroke="#9b59ff" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Könnyen szerkeszthető</h3>
+          <p>Változtass színeket, alakzatokat és útvonalakat bármikor.</p>
+        </div>
+        <!-- Card 4 -->
+        <div class="card glass reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="14" width="16" height="20" rx="3" fill="none" stroke="#7b2ff7" stroke-width="2"/><rect x="26" y="10" width="16" height="28" rx="3" fill="none" stroke="#00c6ff" stroke-width="2"/><line x1="22" y1="24" x2="26" y2="24" stroke="#9b59ff" stroke-width="1.5" stroke-dasharray="2"/></svg>
+          </div>
+          <h3>Felbontásfüggetlen</h3>
+          <p>Tökéletes minden képernyőn — telefon, tablet vagy 4K kijelző.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FELHASZNÁLÁSI TERÜLETEK ======== -->
+  <section id="uses" class="section alt-bg">
+    <div class="container">
+      <h2 class="reveal">Hol használják a vektorgrafikát?</h2>
+      <div class="uses-grid">
+        <div class="use-item reveal">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" fill="none" stroke="#7b2ff7" stroke-width="2"/>
+            <text x="32" y="38" text-anchor="middle" fill="#00c6ff" font-size="22" font-weight="bold" font-family="sans-serif">A</text>
+          </svg>
+          <span>Logók &amp; arculat</span>
+        </div>
+        <div class="use-item reveal">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="6" width="44" height="52" rx="4" fill="none" stroke="#7b2ff7" stroke-width="2"/>
+            <line x1="18" y1="18" x2="46" y2="18" stroke="#00c6ff" stroke-width="2"/>
+            <line x1="18" y1="26" x2="40" y2="26" stroke="#9b59ff" stroke-width="1.5"/>
+            <line x1="18" y1="34" x2="44" y2="34" stroke="#9b59ff" stroke-width="1.5"/>
+            <line x1="18" y1="42" x2="36" y2="42" stroke="#9b59ff" stroke-width="1.5"/>
+          </svg>
+          <span>Webdesign &amp; UI</span>
+        </div>
+        <div class="use-item reveal">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="32,8 58,52 6,52" fill="none" stroke="#7b2ff7" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="32" cy="38" r="10" fill="none" stroke="#00c6ff" stroke-width="2"/>
+          </svg>
+          <span>Illusztrációk</span>
+        </div>
+        <div class="use-item reveal">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="26" fill="none" stroke="#7b2ff7" stroke-width="2"/>
+            <path d="M20 32 Q32 10, 44 32 Q32 54, 20 32Z" fill="none" stroke="#00c6ff" stroke-width="1.5"/>
+            <line x1="6" y1="32" x2="58" y2="32" stroke="#9b59ff" stroke-width="1"/>
+            <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="#9b59ff" stroke-width="1"/>
+          </svg>
+          <span>Térképek &amp; infografikák</span>
+        </div>
+        <div class="use-item reveal">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="12" width="48" height="32" rx="3" fill="none" stroke="#7b2ff7" stroke-width="2"/>
+            <polygon points="28,20 28,36 40,28" fill="#00c6ff" opacity=".8"/>
+            <line x1="20" y1="52" x2="44" y2="52" stroke="#9b59ff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>Animáció &amp; mozgókép</span>
+        </div>
+        <div class="use-item reveal">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 48 L16 16 L48 16" fill="none" stroke="#7b2ff7" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="16,40 26,28 36,34 48,18" fill="none" stroke="#00c6ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Adatvizualizáció</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FELÉPÍTÉS: PONTOK, ÚTVONALAK, GÖRBÉK, ALAKZATOK ======== -->
+  <section id="anatomy" class="section">
+    <div class="container">
+      <h2 class="reveal">A vektor felépítése</h2>
+      <p class="section-sub reveal">Minden vektorkép ezekből az alapelemekből épül fel.</p>
+
+      <div class="anatomy-grid">
+        <div class="anatomy-card glass reveal">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="60" r="8" fill="#7b2ff7"/>
+            <circle cx="60" cy="60" r="16" fill="none" stroke="#7b2ff755" stroke-width="1"/>
+          </svg>
+          <h3>Pontok</h3>
+          <p>Horgonypontok, x,y koordinátákkal meghatározva.</p>
+        </div>
+        <div class="anatomy-card glass reveal">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" y1="100" x2="100" y2="20" stroke="url(#grad-path)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="20" cy="100" r="5" fill="#7b2ff7"/>
+            <circle cx="100" cy="20" r="5" fill="#00c6ff"/>
+          </svg>
+          <h3>Útvonalak</h3>
+          <p>Egyenes vagy ívelt vonalak, amelyek pontokat kötnek össze.</p>
+        </div>
+        <div class="anatomy-card glass reveal">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 100 C15 20, 105 20, 105 100" fill="none" stroke="url(#grad-path)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="15" cy="100" r="5" fill="#7b2ff7"/>
+            <circle cx="105" cy="100" r="5" fill="#00c6ff"/>
+            <line x1="15" y1="100" x2="15" y2="20" stroke="#7b2ff755" stroke-width="1" stroke-dasharray="4"/>
+            <line x1="105" y1="100" x2="105" y2="20" stroke="#00c6ff55" stroke-width="1" stroke-dasharray="4"/>
+            <circle cx="15" cy="20" r="3" fill="none" stroke="#7b2ff7" stroke-width="1"/>
+            <circle cx="105" cy="20" r="3" fill="none" stroke="#00c6ff" stroke-width="1"/>
+          </svg>
+          <h3>Görbék</h3>
+          <p>Bézier-fogantyúk, amelyek sima íveket formálnak.</p>
+        </div>
+        <div class="anatomy-card glass reveal">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="60,15 105,45 90,100 30,100 15,45" fill="#7b2ff720" stroke="url(#grad-path)" stroke-width="2.5" stroke-linejoin="round"/>
+            <circle cx="60" cy="15" r="4" fill="#7b2ff7"/>
+            <circle cx="105" cy="45" r="4" fill="#9b59ff"/>
+            <circle cx="90" cy="100" r="4" fill="#00c6ff"/>
+            <circle cx="30" cy="100" r="4" fill="#00c6ff"/>
+            <circle cx="15" cy="45" r="4" fill="#9b59ff"/>
+          </svg>
+          <h3>Alakzatok</h3>
+          <p>Zárt útvonalak, amelyek felismerhető formákat alkotnak.</p>
+        </div>
+      </div>
+
+      <!-- Large illustrative SVG -->
+      <div class="anatomy-illustration reveal">
+        <svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vektor felépítés illusztráció">
+          <defs>
+            <linearGradient id="grad-anat" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#7b2ff7"/>
+              <stop offset="50%" stop-color="#9b59ff"/>
+              <stop offset="100%" stop-color="#00c6ff"/>
+            </linearGradient>
+          </defs>
+          <!-- Decorative grid -->
+          <g stroke="#ffffff08" stroke-width="1">
+            <line x1="0" y1="65" x2="600" y2="65"/><line x1="0" y1="130" x2="600" y2="130"/><line x1="0" y1="195" x2="600" y2="195"/>
+            <line x1="150" y1="0" x2="150" y2="260"/><line x1="300" y1="0" x2="300" y2="260"/><line x1="450" y1="0" x2="450" y2="260"/>
+          </g>
+          <!-- Complex path -->
+          <path d="M40 220 C80 40, 180 40, 220 130 S360 220, 400 130 Q480 20, 560 100" fill="none" stroke="url(#grad-anat)" stroke-width="3" stroke-linecap="round"/>
+          <!-- Anchor points -->
+          <circle cx="40" cy="220" r="6" fill="#7b2ff7"/><circle cx="220" cy="130" r="6" fill="#9b59ff"/><circle cx="400" cy="130" r="6" fill="#00c6ff"/><circle cx="560" cy="100" r="6" fill="#00c6ff"/>
+          <!-- Control handles -->
+          <line x1="40" y1="220" x2="80" y2="40" stroke="#7b2ff744" stroke-width="1" stroke-dasharray="5"/>
+          <circle cx="80" cy="40" r="4" fill="none" stroke="#7b2ff7" stroke-width="1"/>
+          <line x1="220" y1="130" x2="180" y2="40" stroke="#9b59ff44" stroke-width="1" stroke-dasharray="5"/>
+          <circle cx="180" cy="40" r="4" fill="none" stroke="#9b59ff" stroke-width="1"/>
+          <line x1="400" y1="130" x2="480" y2="20" stroke="#00c6ff44" stroke-width="1" stroke-dasharray="5"/>
+          <circle cx="480" cy="20" r="4" fill="none" stroke="#00c6ff" stroke-width="1"/>
+          <!-- Labels -->
+          <text x="30" y="248" fill="#888" font-size="11" font-family="sans-serif">horgony</text>
+          <text x="68" y="30" fill="#888" font-size="11" font-family="sans-serif">fogantyú</text>
+          <text x="190" y="158" fill="#888" font-size="11" font-family="sans-serif">sima csomópont</text>
+          <text x="545" y="128" fill="#888" font-size="11" font-family="sans-serif">vég</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FÁJLFORMÁTUMOK & ESZKÖZÖK ======== -->
+  <section id="formats" class="section alt-bg">
+    <div class="container">
+      <h2 class="reveal">Formátumok &amp; eszközök</h2>
+      <div class="formats-grid">
+        <div class="format-card glass reveal">
+          <span class="format-ext">.svg</span>
+          <p>Webbarát, XML-alapú, CSS-sel stílusozható.</p>
+        </div>
+        <div class="format-card glass reveal">
+          <span class="format-ext">.ai</span>
+          <p>Az Adobe Illustrator saját formátuma.</p>
+        </div>
+        <div class="format-card glass reveal">
+          <span class="format-ext">.eps</span>
+          <p>Encapsulated PostScript — nyomdaipari szabvány.</p>
+        </div>
+        <div class="format-card glass reveal">
+          <span class="format-ext">.pdf</span>
+          <p>Portable Document Format — vektoros tartalmat is támogat.</p>
+        </div>
+      </div>
+
+      <h3 class="reveal tools-heading">Népszerű eszközök</h3>
+      <div class="tools-grid">
+        <div class="tool-pill glass reveal">Adobe Illustrator</div>
+        <div class="tool-pill glass reveal">Inkscape <small>(ingyenes)</small></div>
+        <div class="tool-pill glass reveal">Figma</div>
+        <div class="tool-pill glass reveal">Affinity Designer</div>
+        <div class="tool-pill glass reveal">Sketch</div>
+        <div class="tool-pill glass reveal">SVG kódszerkesztők</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== LÁBLÉC ======== -->
+  <footer id="footer">
+    <div class="container">
+      <p>Készítette: <strong>Döme Viktor</strong></p>
+      <p class="footer-note">HTML, CSS &amp; JS &middot; Külső képek nélkül</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
